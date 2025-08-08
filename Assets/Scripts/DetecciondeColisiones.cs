@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DetecciondeColisiones : MonoBehaviour
 {
-    // Start is called before the first frame update
     private void OnCollisionEnter(Collision col)
     {
-        Debug.Log("Contacto");  
+        Debug.Log("Contacto con: " + col.gameObject.name);
 
-        if (col.gameObject.name == "Player")
+        if (col.gameObject.name == "SimpleFPSController")
         {
-            Destroy(gameObject);
+            Debug.Log("Recargando escena...");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
-
