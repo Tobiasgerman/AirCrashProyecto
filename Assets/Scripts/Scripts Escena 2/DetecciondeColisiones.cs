@@ -10,7 +10,7 @@ public class DetecciondeColisiones : MonoBehaviour
         if (col.gameObject.name == "SimpleFPSController")
         {
             Debug.Log("Recargando escena...");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene("escenaTres");
         }
     }
 }
