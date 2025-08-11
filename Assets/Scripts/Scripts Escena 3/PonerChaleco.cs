@@ -1,18 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RotarMesa : MonoBehaviour
+public class PonerChaleco : MonoBehaviour
 {
-    public GameObject BotonMesa; // botón en la UI
+    public GameObject BotonChaleco; // botón en la UI
     public float anguloRotacion = 90f; // grados a rotar
 
     private bool jugadorCerca = false;
 
     void Start()
     {
-        if (BotonMesa != null)
-            BotonMesa.SetActive(false); // ocultar el botón al inicio
+        if (BotonChaleco != null)
+            BotonChaleco.SetActive(false); // ocultar el botón al inicio
     }
 
     void OnTriggerEnter(Collider other)
@@ -20,8 +21,8 @@ public class RotarMesa : MonoBehaviour
         if (other.gameObject.name == "SimpleFPSController")
         {
             jugadorCerca = true;
-            BotonMesa.SetActive(true);
-            BotonMesa.GetComponent<Button>().onClick.AddListener(RotarObjeto);
+            BotonChaleco.SetActive(true);
+            BotonChaleco.GetComponent<Button>().onClick.AddListener(RotarObjeto);
         }
     }
 
@@ -30,8 +31,8 @@ public class RotarMesa : MonoBehaviour
         if (other.gameObject.name == "SimpleFPSController")
         {
             jugadorCerca = false;
-            BotonMesa.SetActive(false);
-            BotonMesa.GetComponent<Button>().onClick.RemoveListener(RotarObjeto);
+            BotonChaleco.SetActive(false);
+            BotonChaleco.GetComponent<Button>().onClick.RemoveListener(RotarObjeto);
         }
     }
 
@@ -51,3 +52,4 @@ public class RotarMesa : MonoBehaviour
         }
     }
 }
+
