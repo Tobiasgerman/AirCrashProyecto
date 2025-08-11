@@ -507,7 +507,7 @@ PrefabInstance:
     - target: {fileID: 8301348219256438973, guid: d23a71d629ca2cb428e58efdcf5d4c1b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.52
+      value: 2.51
       objectReference: {fileID: 0}
     - target: {fileID: 8301348219256438973, guid: d23a71d629ca2cb428e58efdcf5d4c1b,
         type: 3}
@@ -683,7 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duracionTurbulencia: 15
-  intensidad: 0.3
+  intensidad: 0.1
 --- !u!54 &453509152
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -926,7 +926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 787775704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.34, z: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 2.51}
   m_LocalScale: {x: 1.4768, y: 0.27184, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1159,7 +1159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duracionTurbulencia: 15
-  intensidad: 0.3
+  intensidad: 0.1
 --- !u!114 &1128205923
 MonoBehaviour:
   m_ObjectHideFlags: 0
