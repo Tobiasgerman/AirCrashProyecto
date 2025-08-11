@@ -1,62 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class RotarMesa : MonoBehaviour
 {
-    public GameObject BotonMesa; // Referencia al botón UI
-    private GameObject mesa;     // Referencia a la mesa
+    public GameObject BotonMesa; // botón en la UI
+    public float anguloRotacion = 90f; // grados a rotar
 
     private bool jugadorCerca = false;
 
     void Start()
     {
-        // Buscar la mesa por nombre en la escena
-        mesa = GameObject.Find("Mesa");
+        if (BotonMesa != null)
+            BotonMesa.SetActive(false); // ocultar el botón al inicio
+    }
 
-        // Ocultar el botón al inicio
-        BotonMesa.SetActive(false);
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "SimpleFPSController")
+        {
+            jugadorCerca = true;
+            BotonMesa.SetActive(true);
+            BotonMesa.GetComponent<Button>().onClick.AddListener(RotarObjeto);
+        }
+    }
 
-        // Agregar escucha al botón
-        BotonMesa.GetComponent<Button>().onClick.AddListener(RotarObjeto);
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "SimpleFPSController")
+        {
+            jugadorCerca = false;
+            BotonMesa.SetActive(false);
+            BotonMesa.GetComponent<Button>().onClick.RemoveListener(RotarObjeto);
+        }
     }
 
     void Update()
     {
-        // Si el jugador está cerca y presiona la tecla E (opcional), se puede mostrar el botón también
+        if (jugadorCerca && Input.GetKeyDown(KeyCode.E))
+        {
+            RotarObjeto();
+        }
+    }
+
+    void RotarObjeto()
+    {
         if (jugadorCerca)
         {
-            BotonMesa.SetActive(true);
-        }
-        else
-        {
-            BotonMesa.SetActive(false);
-        }
-    }
-
-    private void RotarObjeto()
-    {
-        if (mesa != null)
-        {
-            mesa.transform.Rotate(0, 90, 0); // Rota 90° en el eje Y
-            BotonMesa.SetActive(false);     // Oculta el botón luego de hacer clic
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "Mesa")
-        {
-            jugadorCerca = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.name == "Mesa")
-        {
-            jugadorCerca = false;
+            transform.Rotate(anguloRotacion, 0f, 0f);
         }
     }
 }
