@@ -4,94 +4,57 @@ using UnityEngine;
 
 public class Cinturon : MonoBehaviour
 {
-    private bool isDragging = false;
-    private Vector3 originalPosition;
-    private bool isAttached = false;
-    private Vector3 dragOffset;
-
-    [SerializeField] private Transform hebilla;
-    [SerializeField] private float snapDistance = 0.5f;
-    [SerializeField] private Vector3 attachOffset = Vector3.zero;
-    [SerializeField] private bool lockXAxis = false;
-    [SerializeField] private bool lockYAxis = false;
-    [SerializeField] private bool lockZAxis = false;
-
-    void Awake()
-    {
-        Collider col = GetComponent<Collider>();
-        if (col == null)
-            gameObject.AddComponent<BoxCollider>();
-    }
+    private bool puedeMoverse = true;
+    private bool arrastrando = false;
+    private Vector3 offsetMouse;
+    private Camera camara;
 
     void Start()
     {
-        originalPosition = transform.position;
+        camara = Camera.main;
     }
 
     void OnMouseDown()
     {
-        if (!isAttached)
-        {
-            isDragging = true;
-            Vector3 screenPoint = Camera.main.WorldToScreenPoint(transform.position);
-            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-            dragOffset = transform.position - Camera.main.ScreenToWorldPoint(mousePos);
-        }
+        if (!puedeMoverse) return;
+
+        arrastrando = true;
+        Vector3 posicionMundo = camara.ScreenToWorldPoint(Input.mousePosition);
+        offsetMouse = transform.position - posicionMundo;
     }
 
     void OnMouseDrag()
     {
-        if (isDragging && !isAttached)
-        {
-            Vector3 screenPoint = Camera.main.WorldToScreenPoint(transform.position);
-            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
-            Vector3 targetPosition = Camera.main.ScreenToWorldPoint(mousePos) + dragOffset;
+        if (!puedeMoverse || !arrastrando) return;
 
-            Vector3 newPosition = transform.position;
+        Vector3 posicionMouse = camara.ScreenToWorldPoint(Input.mousePosition);
+        posicionMouse.z = transform.position.z; 
 
-            if (!lockXAxis) newPosition.x = targetPosition.x;
-            if (!lockYAxis) newPosition.y = targetPosition.y;
-            if (!lockZAxis) newPosition.z = targetPosition.z;
-
-            transform.position = newPosition;
-        }
+        Vector3 nuevaPosicion = transform.position;
+        nuevaPosicion.x = posicionMouse.x + offsetMouse.x;
+        transform.position = nuevaPosicion;
     }
 
     void OnMouseUp()
     {
-        if (isDragging && !isAttached)
-        {
-            isDragging = false;
-
-            if (hebilla != null)
-            {
-                float distance = Vector3.Distance(transform.position, hebilla.position);
-
-                if (distance <= snapDistance)
-                {
-                    Vector3 attachPosition = hebilla.position + attachOffset;
-                    transform.position = attachPosition;
-                    isAttached = true;
-
-                    Rigidbody rb = GetComponent<Rigidbody>();
-                    if (rb != null)
-                    {
-                        rb.isKinematic = true;
-                    }
-                }
-            }
-        }
+        arrastrando = false;
     }
 
-    public void Desabrochar()
+    public void BloquearMovimiento()
     {
-        isAttached = false;
-        transform.position = originalPosition;
+        puedeMoverse = false;
+        arrastrando = false;
+    }
 
-        Rigidbody rb = GetComponent<Rigidbody>();
-        if (rb != null)
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Hebilla"))
         {
-            rb.isKinematic = false;
+            BloquearMovimiento();
+
+            Vector3 posicionHebilla = other.transform.position;
+            posicionHebilla.x = other.transform.position.x;
+            transform.position = posicionHebilla;
         }
     }
 }
