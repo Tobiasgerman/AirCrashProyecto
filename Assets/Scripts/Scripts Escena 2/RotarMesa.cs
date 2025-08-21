@@ -21,15 +21,7 @@ public class RotarMesa : MonoBehaviour
         {
             BotonMesa.gameObject.SetActive(false);
         }
-        else
-        {
-            Debug.LogError("[RotarMesa] Falta asignar 'BotonMesa' (Button) en el Inspector.");
-        }
-
-        if (MesaAnimator == null)
-        {
-            Debug.LogError("[RotarMesa] Falta asignar 'MesaAnimator' (Animator) en el Inspector.");
-        }
+       
     }
 
     void OnTriggerEnter(Collider other)
