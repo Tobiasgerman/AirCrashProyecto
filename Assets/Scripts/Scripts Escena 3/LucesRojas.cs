@@ -4,21 +4,30 @@ using UnityEngine;
 
 public class LucesRojas : MonoBehaviour
 {
-    public float tiempoEncendido = 0.5f;
-    public float tiempoApagado = 0.5f;
+    public float tiempoEncendido = 1;
+    public float tiempoApagado = 2;
     public Light luz;
+    private int prendido = 1;
     // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         StartCoroutine(Titilar());
+    }
+    void Update()
+    {
+
     }
 
     // Update is called once per frame
     IEnumerator Titilar()
     {
-        luz.enabled = true;
-        yield return new WaitForSeconds(tiempoEncendido);
-        luz.enabled = false;
-        yield return new WaitForSeconds(tiempoApagado);
+        while (prendido == 1)
+        {
+            luz.enabled = true;
+            yield return new WaitForSeconds(tiempoEncendido);
+            luz.enabled = false;
+            yield return new WaitForSeconds(tiempoApagado);
+        }
     }
-}
+}   
