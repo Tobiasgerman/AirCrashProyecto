@@ -3,50 +3,105 @@ using UnityEngine.UI;
 
 public class RotarMesa : MonoBehaviour
 {
-    public GameObject BotonMesa; // botón en la UI
-    public float anguloRotacion = 90f; // grados a rotar
+    [Header("Referencias")]
+    public Button BotonMesa;          // asignar el componente Button (no el GameObject solo)
+    public Animator MesaAnimator;     // asignar el Animator del objeto Mesa
+
+    [Header("Opciones")]
+    public string playerTag = "Player";
+    public string triggerName = "PlayAnim";
 
     private bool jugadorCerca = false;
+    private bool animacionUsada = false;
+    private bool listenerAgregado = false;
 
-    void Start()
+    void Awake()
     {
         if (BotonMesa != null)
-            BotonMesa.SetActive(false); // ocultar el botón al inicio
+        {
+            BotonMesa.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("[RotarMesa] Falta asignar 'BotonMesa' (Button) en el Inspector.");
+        }
+
+        if (MesaAnimator == null)
+        {
+            Debug.LogError("[RotarMesa] Falta asignar 'MesaAnimator' (Animator) en el Inspector.");
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "SimpleFPSController")
+        if (animacionUsada) return;
+        if (other.CompareTag(playerTag))
         {
             jugadorCerca = true;
-            BotonMesa.SetActive(true);
-            BotonMesa.GetComponent<Button>().onClick.AddListener(RotarObjeto);
+            Debug.Log("[RotarMesa] Player entró al trigger.");
+
+            if (BotonMesa != null)
+            {
+                BotonMesa.gameObject.SetActive(true);
+
+                if (!listenerAgregado)
+                {
+                    BotonMesa.onClick.AddListener(ActivarAnimacion);
+                    listenerAgregado = true;
+                }
+            }
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "SimpleFPSController")
+        if (other.CompareTag(playerTag))
         {
             jugadorCerca = false;
-            BotonMesa.SetActive(false);
-            BotonMesa.GetComponent<Button>().onClick.RemoveListener(RotarObjeto);
+            Debug.Log("[RotarMesa] Player salió del trigger.");
+
+            if (BotonMesa != null)
+                BotonMesa.gameObject.SetActive(false);
         }
     }
 
     void Update()
     {
-        if (jugadorCerca && Input.GetKeyDown(KeyCode.E))
+        if (!animacionUsada && jugadorCerca && Input.GetKeyDown(KeyCode.E))
         {
-            RotarObjeto();
+            ActivarAnimacion();
         }
     }
 
-    void RotarObjeto()
+    void ActivarAnimacion()
     {
-        if (jugadorCerca)
+        if (animacionUsada) return;
+
+        if (MesaAnimator == null)
         {
-            transform.Rotate(anguloRotacion, 0f, 0f);
+            Debug.LogError("[RotarMesa] No hay Animator asignado a 'MesaAnimator'.");
+            return;
+        }
+
+        Debug.Log("[RotarMesa] Disparando animación una sola vez.");
+        MesaAnimator.ResetTrigger(triggerName); // opcional
+        MesaAnimator.SetTrigger(triggerName);
+
+        animacionUsada = true;
+
+        if (BotonMesa != null)
+        {
+            BotonMesa.interactable = false;
+            BotonMesa.gameObject.SetActive(false);
+        }
+    }
+
+    void OnDisable()
+    {
+        if (BotonMesa != null && listenerAgregado)
+        {
+            BotonMesa.onClick.RemoveListener(ActivarAnimacion);
+            listenerAgregado = false;
         }
     }
 }
