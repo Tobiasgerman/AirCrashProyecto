@@ -34,10 +34,14 @@ ModelImporter:
     2300002: pantalla
     2300004: reposa
     2300006: sosten
+    2300008: manija
+    2300010: mesa
     3300000: asiento
     3300002: pantalla
     3300004: reposa
     3300006: sosten
+    3300008: manija
+    3300010: mesa
     4300000: asiento
     4300002: reposa
     4300004: mesa
@@ -46,6 +50,7 @@ ModelImporter:
     4300010: pantalla
     7400000: Armature|ArmatureAction
     9500000: //RootNode
+    11100000: //RootNode
     13700000: manija
     13700002: mesa
     2186277476908879412: ImportLogs
@@ -126,10 +131,10 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
