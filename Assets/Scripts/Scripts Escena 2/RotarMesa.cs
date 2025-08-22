@@ -15,15 +15,8 @@ public class RotarMesa : MonoBehaviour
     private bool animacionUsada = false;
     private bool listenerAgregado = false;
 
-    void Awake()
-    {
-        if (BotonMesa != null)
-        {
-            BotonMesa.gameObject.SetActive(false);
-        }
-       
-    }
-
+    
+  
     void OnTriggerEnter(Collider other)
     {
         if (animacionUsada) return;
@@ -57,11 +50,13 @@ public class RotarMesa : MonoBehaviour
         }
     }
 
-    void Update()
+    public void Boton()
     {
+        Debug.Log("Click");
         if (!animacionUsada && jugadorCerca && Input.GetKeyDown(KeyCode.E))
         {
             ActivarAnimacion();
+            Debug.Log("Animation");
         }
     }
 
