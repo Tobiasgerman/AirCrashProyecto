@@ -16,7 +16,7 @@ public class AgarrarCaja : MonoBehaviour
 
     void Start()
     {
-       
+        rb = caja.GetComponent<Rigidbody>(); 
     }
 
     void Update()
