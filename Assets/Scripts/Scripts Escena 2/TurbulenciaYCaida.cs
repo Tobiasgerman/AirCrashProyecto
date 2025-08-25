@@ -24,7 +24,7 @@ public class TurbulenciaYCaida : MonoBehaviour
 
     IEnumerator EsperarYComenzarTurbulencia()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
 
         // Guardamos la posición actual como base para vibrar
         posicionBase = transform.localPosition;
