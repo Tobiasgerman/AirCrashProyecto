@@ -274,7 +274,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944279390}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57e88b10dd42ad046b762273415841b6, type: 3}
   m_Name: 
@@ -784,7 +784,7 @@ GameObject:
   - component: {fileID: 836046083}
   - component: {fileID: 836046082}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: w
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1091,22 +1091,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duracionTurbulencia: 15
   intensidad: 0.1
---- !u!114 &1128205923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1128205916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57e88b10dd42ad046b762273415841b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BotonMesa: {fileID: 0}
-  MesaAnimator: {fileID: 0}
-  playerTag: Player
-  triggerName: PlayAnim
 --- !u!4 &1420717606 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8301348219256438975, guid: d23a71d629ca2cb428e58efdcf5d4c1b,
@@ -1482,22 +1466,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944279368}
   m_Mesh: {fileID: 4300006, guid: 29e1b3ca735d8bf4dbd09385133df6d7, type: 3}
---- !u!114 &1944248307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944279388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57e88b10dd42ad046b762273415841b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BotonMesa: {fileID: 0}
-  MesaAnimator: {fileID: 0}
-  playerTag: Player
-  triggerName: PlayAnim
 --- !u!65 &1944248308
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1705,7 +1673,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1944372604}
   - component: {fileID: 1944248308}
-  - component: {fileID: 1944248307}
   m_Layer: 0
   m_Name: manija_end
   m_TagString: Untagged

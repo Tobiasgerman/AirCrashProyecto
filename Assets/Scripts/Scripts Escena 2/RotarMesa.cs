@@ -15,7 +15,19 @@ public class RotarMesa : MonoBehaviour
     private bool animacionUsada = false;
     private bool listenerAgregado = false;
 
-    
+    void Awake()
+    {
+        MesaAnimator.SetBool("PlayAnim", false);
+    }
+
+    private void Update()
+    {
+        // Si el jugador está en el rango Y se presiona la tecla 'E'.
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ActivarAnimacion();
+        }
+    }
   
     void OnTriggerEnter(Collider other)
     {
@@ -71,8 +83,7 @@ public class RotarMesa : MonoBehaviour
         }
 
         Debug.Log("[RotarMesa] Disparando animación una sola vez.");
-        MesaAnimator.ResetTrigger(triggerName); // opcional
-        MesaAnimator.SetTrigger(triggerName);
+        MesaAnimator.SetBool("PlayAnim", true);
 
         animacionUsada = true;
 
