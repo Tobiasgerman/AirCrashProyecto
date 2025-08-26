@@ -19,8 +19,8 @@ public class PrimerosAuxilios : MonoBehaviour
 
     private void Update()
     {
-        // Si el jugador está en el rango Y se presiona la tecla 'E'.
-        if (Input.GetKeyDown(KeyCode.E))
+        // Si el jugador está en el rango Y se presiona la tecla 'B'.
+        if (Input.GetKeyDown(KeyCode.B))
         {
             ActivarAnimacion();
         }
@@ -62,7 +62,7 @@ public class PrimerosAuxilios : MonoBehaviour
     public void Boton()
     {
         Debug.Log("Click");
-        if (!animacionUsada && jugadorCerca && Input.GetKeyDown(KeyCode.E))
+        if (!animacionUsada && jugadorCerca && Input.GetKeyDown(KeyCode.B))
         {
             ActivarAnimacion();
             Debug.Log("Animation");
