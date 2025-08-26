@@ -25,13 +25,13 @@ public class RotarMesa : MonoBehaviour
         // Si el jugador está en el rango Y se presiona la tecla 'E'.
         if (Input.GetKeyDown(KeyCode.E))
         {
-            ActivarAnimacion();
+            if (!animacionUsada) ActivarAnimacion();
+            else ActivarAnimacionCerrar();
         }
     }
   
     void OnTriggerEnter(Collider other)
     {
-        if (animacionUsada) return;
         if (other.CompareTag(playerTag))
         {
             jugadorCerca = true;
@@ -73,9 +73,7 @@ public class RotarMesa : MonoBehaviour
     }
 
     void ActivarAnimacion()
-    {
-        if (animacionUsada) return;
-
+    { 
         if (MesaAnimator == null)
         {
             Debug.LogError("[RotarMesa] No hay Animator asignado a 'MesaAnimator'.");
@@ -93,6 +91,29 @@ public class RotarMesa : MonoBehaviour
             BotonMesa.gameObject.SetActive(false);
         }
     }
+
+    void ActivarAnimacionCerrar()
+    {
+        if (MesaAnimator == null)
+        {
+            Debug.LogError("[RotarMesa] No hay Animator asignado a 'MesaAnimator'.");
+            return;
+        }
+
+        Debug.Log("[RotarMesa] Disparando animación una sola vez.");
+        MesaAnimator.SetBool("PlayAnim", false);
+
+        animacionUsada = false;
+
+        if (BotonMesa != null)
+        {
+            BotonMesa.interactable = false;
+            BotonMesa.gameObject.SetActive(false);
+        }
+
+    }
+
+
 
     void OnDisable()
     {
