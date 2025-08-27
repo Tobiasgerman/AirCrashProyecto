@@ -14,7 +14,7 @@ public class barco : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Moverse()
     {
         Barco.destination = Destino.position;
         Debug.Log("Distancia al destino: " + Barco.remainingDistance);

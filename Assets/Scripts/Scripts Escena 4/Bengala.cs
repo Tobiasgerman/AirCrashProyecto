@@ -2,7 +2,6 @@
 
 public class Bengala : MonoBehaviour
 {
-    [Header("Flare Settings")]
     public GameObject flarePrefab;
     public GameObject flareProjectilePrefab; // Proyectil que se dispara
     public Transform firePoint;
@@ -10,14 +9,14 @@ public class Bengala : MonoBehaviour
     public float pickupRange = 2f;
     public KeyCode pickupKey = KeyCode.E;
     public KeyCode dropKey = KeyCode.Q;
-
-    [Header("UI")]
     public GameObject pickupPrompt;
 
     private Camera playerCamera;
     private bool isHoldingFlare = false;
     private GameObject currentFlare;
     private Rigidbody flareRigidbody;
+
+    public barco Barco;
 
     void Start()
     {
@@ -173,6 +172,8 @@ public class Bengala : MonoBehaviour
         {
             flareProjectile.Ignite();
         }
+
+        Barco.Moverse();
 
         Debug.Log("¡Bengala disparada!");
 
