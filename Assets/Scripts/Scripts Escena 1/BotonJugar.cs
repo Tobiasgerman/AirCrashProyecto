@@ -9,7 +9,7 @@ public class BotonJugar : MonoBehaviour
     public void OnMouseDown()
     {
         SceneManager.LoadScene("escenaDos");
-        Debug.Log("bege");
+        Debug.Log(".");
 
     }
 }

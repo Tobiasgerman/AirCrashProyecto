@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class AgarrarCaja : MonoBehaviour
 {
-    [Header("Referencias")]
+
     public GameObject jugador;   // El jugador
     public GameObject caja;      // La caja a agarrar
     public Button BotonCaja;     // Botón que aparece al acercarse

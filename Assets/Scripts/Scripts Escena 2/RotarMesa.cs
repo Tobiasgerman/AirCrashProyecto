@@ -3,11 +3,9 @@ using UnityEngine.UI;
 
 public class RotarMesa : MonoBehaviour
 {
-    [Header("Referencias")]
     public Button BotonMesa;          // asignar el componente Button (no el GameObject solo)
     public Animator MesaAnimator;     // asignar el Animator del objeto Mesa
-
-    [Header("Opciones")]
+    
     public string playerTag = "Player";
     public string triggerName = "PlayAnim";
 
