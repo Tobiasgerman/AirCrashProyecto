@@ -1182,6 +1182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BotonBotiquin: {fileID: 1233854677}
   BotiquinAnimator: {fileID: 2086356653}
+  UI: {fileID: 1233854675}
 --- !u!4 &1547868909
 Transform:
   m_ObjectHideFlags: 0
@@ -1552,6 +1553,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100006, guid: fa7f1589e2ea91541afe559cb6f149a6, type: 3}
       propertyPath: m_Name
+      value: Botiquin
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: fa7f1589e2ea91541afe559cb6f149a6, type: 3}
+      propertyPath: m_TagString
+      value: Botiquin
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: fa7f1589e2ea91541afe559cb6f149a6, type: 3}
+      propertyPath: m_TagString
+      value: Botiquin
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: fa7f1589e2ea91541afe559cb6f149a6, type: 3}
+      propertyPath: m_TagString
       value: Botiquin
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: fa7f1589e2ea91541afe559cb6f149a6, type: 3}
