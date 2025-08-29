@@ -13,6 +13,7 @@ public class PonerChaleco : MonoBehaviour
     private bool jugadorCerca = false;
     private bool colocado = false;
     private Transform jugador;
+    public Animator chaleco;
 
     void Start()
     {
@@ -61,6 +62,8 @@ public class PonerChaleco : MonoBehaviour
     {
         colocado = true;
         BotonChaleco.SetActive(false);
+        chaleco.SetBool("Chaleco", true);
+        yield return new WaitForSeconds(5f);
 
         if (GetComponent<Rigidbody>() != null)
             GetComponent<Rigidbody>().isKinematic = true;
