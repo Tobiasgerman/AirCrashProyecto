@@ -9,12 +9,18 @@ public class PrimerosAuxilios : MonoBehaviour
     private bool jugadorCerca = false;
     private bool animacionUsada = false;
     private bool listenerAgregado = false;
+    public GameObject UI;
 
     private string playerTag = "Player";
 
     void Awake()
     {
         BotiquinAnimator.SetBool("PlayAnim", false);
+    }
+    
+    void Start()
+    {
+        UI.SetActive(false);
     }
 
     private void Update()
@@ -28,20 +34,24 @@ public class PrimerosAuxilios : MonoBehaviour
   
     void OnTriggerEnter(Collider other)
     {
-        if (animacionUsada) return;
-        if (other.CompareTag(playerTag))
+        if (other.gameObject.CompareTag("Botiquin"))
         {
-            jugadorCerca = true;
-            Debug.Log("[RotarMesa] Player entró al trigger.");
-
-            if (BotonBotiquin != null)
+            UI.SetActive(true);
+            if (animacionUsada) return;
+            if (other.CompareTag(playerTag))
             {
-                BotonBotiquin.gameObject.SetActive(true);
+                jugadorCerca = true;
+                Debug.Log("[RotarMesa] Player entró al trigger.");
 
-                if (!listenerAgregado)
+                if (BotonBotiquin != null)
                 {
-                    BotonBotiquin.onClick.AddListener(ActivarAnimacion);
-                    listenerAgregado = true;
+                    BotonBotiquin.gameObject.SetActive(true);
+
+                    if (!listenerAgregado)
+                    {
+                        BotonBotiquin.onClick.AddListener(ActivarAnimacion);
+                        listenerAgregado = true;
+                    }
                 }
             }
         }
@@ -49,8 +59,9 @@ public class PrimerosAuxilios : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(playerTag))
+        if (other.gameObject.CompareTag("Botiquin"))
         {
+            UI.SetActive(false);
             jugadorCerca = false;
             Debug.Log("[RotarMesa] Player salió del trigger.");
 
@@ -78,7 +89,7 @@ public class PrimerosAuxilios : MonoBehaviour
             Debug.LogError("[RotarMesa] No hay Animator asignado a 'MesaAnimator'.");
             return;
         }
-
+        UI.SetActive(false);
         Debug.Log("[RotarMesa] Disparando animación una sola vez.");
         BotiquinAnimator.SetBool("PlayAnim", true);
 
