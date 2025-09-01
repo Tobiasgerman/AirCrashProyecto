@@ -1,14 +1,15 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PonerMascara : MonoBehaviour
 {
-    [Header("Referencias")]
+
     public GameObject BotonMascara;     // Asignar el botón desde el Inspector
     public Animator MascaraAnimator;    // Asignar el Animator de la máscara
 
-    [Header("Ajustes")]
+    
     public Vector3 ajustePosicion = new Vector3(0f, 0.2f, 0.3f); // Offset para la cara
 
     private Transform jugador;
@@ -89,18 +90,18 @@ public class PonerMascara : MonoBehaviour
             BotonMascara.SetActive(false);
         }
 
-        // Desactivar rigidbody si existe
+       
         Rigidbody rb = GetComponent<Rigidbody>();
         if (rb != null)
             rb.isKinematic = true;
 
-        // Posicionar de inmediato en la cara del jugador
+       
         transform.position = jugador.position + ajustePosicion;
 
-        // 🔥 Activar la animación
+       
         if (MascaraAnimator != null)
         {
-            MascaraAnimator.SetTrigger("Colocar"); // asegúrate que en el Animator exista un Trigger llamado "Colocar"
+            MascaraAnimator.SetTrigger("PlayAnim");
         }
     }
 
