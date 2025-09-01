@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 public class RotarMesa : MonoBehaviour
 {
-    public Button BotonMesa;          // asignar el componente Button (no el GameObject solo)
-    public Animator MesaAnimator;     // asignar el Animator del objeto Mesa
+    public Button BotonMesa;          
+    public Animator MesaAnimator;
+    public GameObject UI;    
     
     public string playerTag = "Player";
     public string triggerName = "PlayAnim";
@@ -16,6 +17,10 @@ public class RotarMesa : MonoBehaviour
     void Awake()
     {
         MesaAnimator.SetBool("PlayAnim", false);
+    }
+    void Start()
+    {
+        UI.SetActive(false);
     }
 
     private void Update()
@@ -32,6 +37,7 @@ public class RotarMesa : MonoBehaviour
     {
         if (other.CompareTag(playerTag))
         {
+            UI.SetActive(true);
             jugadorCerca = true;
             Debug.Log("[RotarMesa] Player entró al trigger.");
 
@@ -52,6 +58,7 @@ public class RotarMesa : MonoBehaviour
     {
         if (other.CompareTag(playerTag))
         {
+            UI.SetActive(false);
             jugadorCerca = false;
             Debug.Log("[RotarMesa] Player salió del trigger.");
 
@@ -82,6 +89,7 @@ public class RotarMesa : MonoBehaviour
         MesaAnimator.SetBool("PlayAnim", true);
 
         animacionUsada = true;
+        UI.SetActive(false);
 
         if (BotonMesa != null)
         {
