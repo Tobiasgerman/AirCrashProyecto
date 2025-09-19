@@ -17,9 +17,9 @@ public class CaidaDemorada : MonoBehaviour
         StartCoroutine(ActivarCaida());
     }
 
-    private System.Collections.IEnumerator ActivarCaida()
+    public System.Collections.IEnumerator ActivarCaida()
     {
-        yield return new WaitForSeconds(10f); // Cae despues de 10 segundos
+        yield return new WaitForSeconds(5f); // Cae despues de 10 segundos
 
         rb.useGravity = true;
     }

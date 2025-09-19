@@ -17,14 +17,11 @@ public class TurbulenciaYCaida : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
-
-        // Iniciar la corutina que espera 5 segundos antes de activar la turbulencia
-        StartCoroutine(EsperarYComenzarTurbulencia());
     }
 
-    IEnumerator EsperarYComenzarTurbulencia()
+    public IEnumerator EsperarYComenzarTurbulencia()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
 
         // Guardamos la posición actual como base para vibrar
         posicionBase = transform.localPosition;

@@ -13,6 +13,8 @@ public class Cinturon : MonoBehaviour
     private Vector3 offset;
     private Camera mainCamera;
     private Vector3 initialPosition;
+    TurbulenciaYCaida turbu;
+    CaidaDemorada caida;
 
     void Start()
     {
@@ -107,6 +109,8 @@ public class Cinturon : MonoBehaviour
             // Bloquear para que no se pueda arrastrar más
             isLocked = true;
             isDragging = false;
+            turbu.EsperarYComenzarTurbulencia();
+            caida.ActivarCaida();
 
             Debug.Log(gameObject.name + " se ha pegado a " + targetObject.name);
         }
